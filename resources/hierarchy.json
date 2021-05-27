@@ -1,0 +1,8 @@
+{
+  "Clair": ["Bob", "Sally", "John"],
+  "Bob": ["Alla", "Bobo", "Coco"],
+  "Sally": ["Tata", "Fak", "Gumby"],
+  "John": ["Mak", "Karl", "Lenya"],
+  "Mak": ["Petya"],
+  "Karl": ["Alice"]
+}

@@ -1,0 +1,15 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: "{{  .Chart.Name }}-ingress"
+  labels:
+    chart: '{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}'
+spec:
+  rules:
+    - host: "{{ .Values.ingressDomain }}"
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: "{{  .Chart.Name }}-svc"
+              servicePort: https

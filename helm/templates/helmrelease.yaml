@@ -1,0 +1,30 @@
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: org-hierarchy-ingress
+  labels:
+    chart: '{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}'
+spec:
+  releaseName: org-hierarchy-ingress
+  chart:
+    repository: https://kubernetes.github.io/ingress-nginx
+    name: ingress-nginx
+    version: "2.11.1"
+  values:
+    defaultBackend:
+      enabled: false
+    rbac:
+      scope: true
+    controller:
+      replicaCount: {{ .Values.ingressReplicas }}
+      ingressClass: "org-hierarchy-ingress-{{ .Value.Namespace }}"
+      config:
+        enable-real-ip: "true"
+        use-proxy-protocol: "true"
+        proxy-real-ip-cidr: "0.0.0.0/0"
+        worker-processes: "5"
+        keep-alive: "200"
+        client-header-timeout: "200"
+        proxy-connect-timeout: "120"
+        proxy-send-timeout: "120"
+        proxy-read-timeout: "120"

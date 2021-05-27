@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  org-hierarchy:
+    build:
+      context: .
+      dockerfile: cmd/server/Dockerfile
+    restart: always
+    ports:
+      - "8080:8080"
